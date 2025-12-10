@@ -1,29 +1,27 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    // --- Scroll animation cho DANH MỤC SẢN PHẨM ---
-    const catLeft = document.querySelectorAll('.cat-animate-left');
-    const catUp = document.querySelectorAll('.cat-animate-up');
+    const options = { threshold: 0.2 };
 
-    const options = {
-        threshold: 0.3 
-    };
+    function makeObserver(selector, visibleClass) {
+        const elements = document.querySelectorAll(selector);
+        if (!elements.length) return;
 
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
 
-            const el = entry.target;
+                entry.target.classList.add(visibleClass);
+                obs.unobserve(entry.target); // chỉ chạy 1 lần
+            });
+        }, options);
 
-            if (el.classList.contains('cat-animate-left')) {
-                el.classList.add('cat-visible-left');
-            }
+        elements.forEach(el => observer.observe(el));
+    }
 
-            if (el.classList.contains('cat-animate-up')) {
-                el.classList.add('cat-visible-up');
-            }
+    // DANH MỤC SẢN PHẨM
+    makeObserver('.cat-animate-left', 'cat-visible-left');
+    makeObserver('.cat-animate-up', 'cat-visible-up');
 
-            obs.unobserve(el);
-        });
-    }, options);
-
-    [...catLeft, ...catUp].forEach(el => observer.observe(el));
+    // NEWEST ARRIVAL
+    makeObserver('.arr-animate-left', 'arr-visible-left');
+    makeObserver('.arr-animate-right', 'arr-visible-right');
 });

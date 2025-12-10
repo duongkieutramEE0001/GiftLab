@@ -25,6 +25,20 @@ body {
 }
 
 @font-face {
+    font-family: 'MeowScript';
+    src: url('/fonts/MeowScript-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gulfs Display';
+    src: url('/fonts/Gulfs Display Normal.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Noto Sans';
     src: url('/fonts/NotoSans-Bold.ttf') format('truetype');
     font-weight: 700;
@@ -73,7 +87,7 @@ a {
 .gl-slider-horizontal {
     display: flex;
     width: 300%;
-    animation: slideHorizontal 15s ease-in-out infinite; /* 3 slide x 5s */
+    animation: slideHorizontal 9s ease-in-out infinite; /* 3 slide x 5s */
 }
 
 /* hover -> đứng yên */
@@ -153,7 +167,6 @@ a {
     filter: brightness(1.0);
 }
 
-/* Logo 262x130 */
 .gl-logo-wrapper {
     display: flex;
     justify-content: center;
@@ -161,10 +174,11 @@ a {
 }
 
 .gl-logo {
-    width: 302px;
-    height: 170px;
+    width: 272px;
+    height: 140px;
     object-fit: contain;
     display: block;
+    padding: 0 0 0 40px;
 }
 
 /* ================== NAV MENU ================== */
@@ -696,3 +710,101 @@ a {
         align-self: center;
     }
 }
+
+/* =============== NEWEST ARRIVAL =============== */
+
+.gl-arrival {
+    width: 100vw; /* tràn theo chiều ngang màn hình */
+    margin-left: calc(50% - 50vw); /* thoát khỏi container ngoài */
+    padding: 50px 70px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* HÌNH BÊN TRÁI */
+.gl-arrival-image {
+    flex: 0 0 55%;
+    max-width: 55%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+    .gl-arrival-image img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 20px;
+    }
+
+/* TEXT BÊN PHẢI */
+.gl-arrival-text {
+    flex: 0 0 45%;
+    max-width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+    gap: 20px;
+}
+
+.arrival-newest {
+    font-family: "MeowScript", sans-serif; 
+    font-size: 70px;
+    color: #d70025;
+    margin: 0;
+}
+
+.arrival-title {
+    font-family: "Gulfs Display", sans-serif;
+    font-size: 70px;
+    font-weight: 800;
+    color: #ff8ea8;
+    margin-top: -30px;
+    letter-spacing: 3px;
+}
+
+.gl-arrival-btn {
+    padding: 12px 40px;
+    font-size: 16px;
+    border-radius: 999px;
+}
+
+@media (max-width: 900px) {
+    .gl-arrival {
+        flex-direction: column;
+        text-align: center;
+        margin-left: 0;
+        width: 100%; 
+        padding: 40px 16px;
+    }
+
+    .gl-arrival-image,
+    .gl-arrival-text {
+        max-width: 100%;
+        flex: none;
+    }
+}
+
+/* ========== ARRIVAL FADE-IN (scroll tới mới chạy) ========== */
+
+.arr-animate-left {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.arr-animate-right {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.arr-visible-left {
+    animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.arr-visible-right {
+    animation: fadeInRight 0.8s ease-out forwards;
+}
+
+

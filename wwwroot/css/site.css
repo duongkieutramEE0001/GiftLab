@@ -1,4 +1,21 @@
-﻿/* ================== FONT (Noto Sans local) ================== */
+﻿html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.gl-container {
+    flex: 1; /* đẩy footer xuống đáy */
+}
+
+.gl-footer {
+    flex-shrink: 0;
+}
+
+/* ================== FONT (Noto Sans local) ================== */
 
 @font-face {
     font-family: 'Noto Sans';
@@ -186,6 +203,72 @@ a {
     margin: 0 auto;
     padding: 24px 16px;
 }
+/* ================== FOOTER ================== */
+
+.gl-footer {
+    background: #fff5f8;
+    border-top: 5px solid #fb6f92;
+    padding: 40px 16px; /* hạ chiều cao */
+}
+
+.gl-footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+/* Cột footer */
+.gl-footer-col h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #d70025;
+    margin-bottom: 12px;
+}
+
+.gl-footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .gl-footer-col ul li {
+        margin-bottom: 10px;
+    }
+
+        .gl-footer-col ul li a,
+        .gl-footer-contact li {
+            font-size: 16px;
+            color: #d70025;
+            text-decoration: none;
+        }
+
+            .gl-footer-col ul li a:hover {
+                text-decoration: underline;
+            }
+
+/* Logo */
+.gl-footer-logo {
+    width: 380px;
+    height: auto;
+}
+
+/* Bản quyền dưới logo */
+.gl-footer-copy {
+    font-size: 14px;
+    color: #d70025;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* Cột logo thẳng hàng */
+.logo-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
 /* ================== RESPONSIVE ================== */
 
@@ -207,3 +290,44 @@ a {
             font-size: 14px;
         }
 }
+/* ================== FOOTER RESPONSIVE ================== */
+
+@media (max-width: 768px) {
+
+    .gl-footer {
+        height: auto; /* cho cao linh hoạt khi xếp dọc */
+        padding: 40px 0;
+    }
+
+    .gl-footer-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .logo-col {
+        align-items: center;
+    }
+
+    .gl-footer-logo {
+        width: 200px; /* logo co nhỏ */
+        height: auto;
+    }
+
+    .gl-footer-copy {
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    .gl-footer-col h3 {
+        font-size: 18px; /* giảm nhẹ */
+    }
+
+    .gl-footer-col ul li a,
+    .gl-footer-contact li {
+        font-size: 15px;
+    }
+}
+

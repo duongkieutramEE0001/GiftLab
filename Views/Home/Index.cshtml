@@ -1,8 +1,111 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang chủ";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="gl-hero">
+    <!-- Bên trái: nội dung -->
+    <div class="gl-hero-text fade-in-left">
+        <h1 class="gl-hero-title">GiftLab</h1>
+
+        <p class="gl-hero-desc">
+            Mỗi một món quà nhỏ xinh ở GiftLab đều được tạo nên bằng đôi tay, gửi đến bạn kèm chút thương thương.
+            <span class="gl-hero-highlight">“small but sweet”</span> — những điều giản dị đôi khi lại chạm đến những cảm xúc thật to 💗
+        </p>
+
+        <div class="gl-hero-actions">
+            <a href="/shop" class="gl-btn gl-btn-primary">MUA NGAY</a>
+            <a href="/about" class="gl-btn gl-btn-secondary">XEM THÊM</a>
+        </div>
+    </div>
+
+    <!-- Bên phải: hình minh hoạ -->
+    <div class="gl-hero-image fade-in-right">
+        <img src="~/images/home-1.png" alt="GiftLab handmade corner" />
+    </div>
+</section>
+
+<section class="gl-feature-bar">
+    <div class="gl-feature-track">
+        <div class="gl-feature-item">
+            <img src="~/images/freeship.png" alt="Feature 1" />
+        </div>
+
+        <div class="gl-feature-item">
+            <img src="~/images/thanhtoan.png" alt="Feature 2" />
+        </div>
+
+        <div class="gl-feature-item">
+            <img src="~/images/nguyenlieu.png" alt="Feature 3" />
+        </div>
+
+        <div class="gl-feature-item">
+            <img src="~/images/hotro.png" alt="Feature 4" />
+        </div>
+
+        <div class="gl-feature-item">
+            <img src="~/images/chinhsach.png" alt="Feature 5" />
+        </div>
+
+        <!-- Lặp lại để tạo vòng chạy liên tục -->
+        <div class="gl-feature-item">
+            <img src="~/images/freeship.png" alt="Feature 1" />
+        </div>
+
+        <div class="gl-feature-item">
+            <img src="~/images/thanhtoan.png" alt="Feature 2" />
+        </div>
+
+        <div class="gl-feature-item">
+            <img src="~/images/nguyenlieu.png" alt="Feature 3" />
+        </div>
+
+        <div class="gl-feature-item">
+            <img src="~/images/hotro.png" alt="Feature 4" />
+        </div>
+
+        <div class="gl-feature-item">
+            <img src="~/images/chinhsach.png" alt="Feature 5" />
+        </div>
+    </div>
+</section>
+
+<section class="gl-category">
+    <div class="gl-category-header">
+        <h2 class="gl-category-title cat-animate-left">
+            DANH MỤC SẢN PHẨM
+        </h2>
+
+        <a href="/shop" class="gl-category-link">
+            Xem cửa hàng →
+        </a>
+    </div>
+
+    <div class="gl-category-list">
+        <div class="gl-category-item cat-animate-up">
+            <a href="/shop?category=len-mem" class="gl-category-card">
+                <img src="~/images/cat-lenmem.png" alt="Len mềm" />
+            </a>
+        </div>
+
+        <div class="gl-category-item cat-animate-up">
+            <a href="/shop?category=dat-mau" class="gl-category-card">
+                <img src="~/images/cat-datmau.png" alt="Đất màu" />
+            </a>
+        </div>
+
+        <div class="gl-category-item cat-animate-up">
+            <a href="/shop?category=banh-ngot" class="gl-category-card">
+                <img src="~/images/cat-banhngot.png" alt="Bánh ngọt" />
+            </a>
+        </div>
+
+        <div class="gl-category-item cat-animate-up">
+            <a href="/shop?category=hat-cuom" class="gl-category-card">
+                <img src="~/images/cat-hatcuom.png" alt="Hạt cườm" />
+            </a>
+        </div>
+    </div>
+</section>
+
+
+

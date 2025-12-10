@@ -1,95 +1,71 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GiftLabECommerce</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- CSS chính -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <!--Header-->
-    <header class="main-header">
+    <!-- ================= HEADER ================= -->
+    <header class="gl-header">
 
-        <div id="notificationCarousel" class="notification-bar bg-pink text-center carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <span class="text-white fw-bold d-block py-2">MIỄN PHÍ VẬN CHUYỂN CHO ĐƠN HÀNG TỪ 300K</span>
-                </div>
-                <div class="carousel-item">
-                    <span class="text-white fw-bold d-block py-2">CHÀO MỪNG BẠN ĐẾN VỚI GIFTLAB</span>
-                </div>
-                <div class="carousel-item">
-                    <span class="text-white fw-bold d-block py-2">GIẢM 20% CHO CÁC SẢN PHẨM MÙA LỄ HỘI</span>
-                </div>
-            </div>
-
-            <button class="carousel-control-prev nav-arrow left-arrow" type="button" data-bs-target="#notificationCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true">&lt;</span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next nav-arrow right-arrow" type="button" data-bs-target="#notificationCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true">&gt;</span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
-        <div class="container-fluid">
-            <div class="main-bar d-flex justify-content-between align-items-center py-3 px-2">
-
-                <div class="social-icons">
-                    <a href="#" class="me-2 social-link"><img src="~/images/icon-facebook.png" alt="Facebook" class="social-icon" /></a>
-                    <a href="#" class="social-link"><img src="~/images/icon-instagram.png" alt="Instagram" class="social-icon" /></a>
-                </div>
-
-                <div class="logo-area">
-                    <a asp-area="" asp-controller="Home" asp-action="Index">
-                        <img src="~/images/logo.png" alt="GiftLab Logo" class="header-logo" />
-                    </a>
-                </div>
-
-                <div class="action-icons">
-                    <a href="#" class="me-3 action-link"><img src="~/images/icon-search.png" alt="Search" class="action-icon" /></a>
-                    <a href="#" class="me-3 action-link"><img src="~/images/icon-heart.png" alt="Wishlist" class="action-icon" /></a>
-                    <a href="#" class="me-3 action-link"><img src="~/images/icon-cart.png" alt="Cart" class="action-icon" /></a>
-                    <a href="#" class="action-link"><img src="~/images/icon-user.png" alt="Account" class="action-icon" /></a>
-                </div>
+        <!-- ========== TOP BAR (SLIDER NGANG) ========== -->
+        <div class="gl-top-bar">
+            <div class="gl-slider-horizontal">
+                <div class="gl-slide">✨ CHÀO MỪNG BẠN ĐẾN VỚI GIFTLAB ✨ </div>
+                <div class="gl-slide">MIỄN PHÍ VẬN CHUYỂN CHO ĐƠN HÀNG TỪ 300K</div>
+                <div class="gl-slide">GIẢM 20% CHO TOÀN BỘ SẢN PHẨM THUỘC BST MỚI RA MẮT</div>
             </div>
         </div>
 
-        <nav class="main-nav-bar bg-light-pink py-2">
-            <div class="container-fluid">
-                <ul class="nav justify-content-center">
-                    <li class="nav-item"><a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Home" asp-action="Index">TRANG CHỦ</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark fw-bold" href="#">VỀ CHÚNG TÔI</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" data-bs-toggle="dropdown">CỬA HÀNG</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link text-dark fw-bold" href="#">ĐIỀU NHỎ XINH</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark fw-bold" href="#">HỖ TRỢ</a></li>
-                </ul>
+        <!-- ========== MAIN HEADER (ICONS + LOGO) ========== -->
+        <div class="gl-main-header">
+
+            <!-- Icons bên trái -->
+            <div class="gl-main-icons gl-main-icons-left">
+                <a href="#"><img src="~/images/fb-icon.png" class="gl-icon" alt="Facebook" /></a>
+                <a href="#"><img src="~/images/ig-icon.png" class="gl-icon" alt="Instagram" /></a>
             </div>
+
+            <!-- Logo chính giữa -->
+            <div class="gl-logo-wrapper">
+                <a href="/">
+                    <img src="~/images/logo.png" class="gl-logo" alt="GiftLab" />
+                </a>
+            </div>
+
+            <!-- Icons bên phải -->
+            <div class="gl-main-icons gl-main-icons-right">
+                <a href="#"><img src="~/images/search-icon.png" class="gl-icon" alt="Tìm kiếm" /></a>
+                <a href="#"><img src="~/images/wishlist-icon.png" class="gl-icon" alt="Yêu thích" /></a>
+                <a href="#"><img src="~/images/cart-icon.png" class="gl-icon" alt="Giỏ hàng" /></a>
+                <a href="#"><img src="~/images/user-icon.png" class="gl-icon" alt="Tài khoản" /></a>
+            </div>
+
+        </div>
+
+        <!-- ========== NAVIGATION MENU ========== -->
+        <nav class="gl-nav">
+            <ul class="gl-nav-list">
+                <li><a href="/">TRANG CHỦ</a></li>
+                <li><a href="/about">VỀ CHÚNG TÔI</a></li>
+                <li><a href="/shop">CỬA HÀNG</a></li>
+                <li><a href="/cute-things">ĐIỀU NHỎ XINH</a></li>
+                <li><a href="/support">HỖ TRỢ</a></li>
+            </ul>
         </nav>
-
     </header>
 
-    <div class="container-fluid main-content">
-        <main role="main" class="pb-3">
+    <!-- ================= NỘI DUNG TRANG ================= -->
+    <div class="gl-container">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container-fluid footer-content">
-            &copy; @DateTime.Now.Year - GiftLab - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

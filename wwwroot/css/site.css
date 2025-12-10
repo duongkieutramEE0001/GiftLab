@@ -1,22 +1,209 @@
-html {
-  font-size: 14px;
+﻿/* ================== FONT (Noto Sans local) ================== */
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('/fonts/NotoSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('/fonts/NotoSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
+/* ================== RESET CƠ BẢN ================== */
 
-html {
-  position: relative;
-  min-height: 100%;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #222;
+    background: #fff;
+}
+
+a {
+    color: inherit;
+}
+
+/* ================== HEADER WRAPPER ================== */
+
+.gl-header {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+/* ================== TOP BAR SLIDER NGANG ================== */
+
+.gl-top-bar {
+    background: #ffd4de;
+    color: #d70025;
+    height: 40px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700; /* in đậm */
+}
+
+/* 3 slide ngang, tổng 300% chiều rộng */
+.gl-slider-horizontal {
+    display: flex;
+    width: 300%;
+    animation: slideHorizontal 15s ease-in-out infinite; /* 3 slide x 5s */
+}
+
+/* hover -> đứng yên */
+.gl-top-bar:hover .gl-slider-horizontal {
+    animation-play-state: paused;
+}
+
+/* mỗi slide chiếm full width của khung top bar */
+.gl-slide {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* 1 vòng 15s, mỗi slide hiển thị ~5s, trượt luôn về phía trước */
+@keyframes slideHorizontal {
+    /* Slide 1 hiện */
+    0% {
+        transform: translateX(0);
+    }
+
+    30% {
+        transform: translateX(0);
+    }
+    /* Trượt sang slide 2 */
+    33% {
+        transform: translateX(-100%);
+    }
+    /* Slide 2 hiện */
+    63% {
+        transform: translateX(-100%);
+    }
+    /* Trượt sang slide 3 */
+    66% {
+        transform: translateX(-200%);
+    }
+    /* Slide 3 hiện */
+    96% {
+        transform: translateX(-200%);
+    }
+    /* Nhảy về slide 1 để lặp tiếp */
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* ================== MAIN HEADER (LOGO + ICON) ================== */
+
+.gl-main-header {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    justify-content: space-between;
+    padding: 15px 100px;
+    background: #ffffff;
+}
+
+.gl-main-icons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.gl-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: block;
+    transition: transform .2s ease, filter .2s ease;
+}
+
+.gl-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+    filter: brightness(1.0);
+}
+
+/* Logo 262x130 */
+.gl-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gl-logo {
+    width: 302px;
+    height: 170px;
+    object-fit: contain;
+    display: block;
+}
+
+/* ================== NAV MENU ================== */
+
+.gl-nav {
+    background: #ffe5ec; /* màu nền */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gl-nav-list {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+    .gl-nav-list a {
+        text-decoration: none;
+        color: #d70025;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+        .gl-nav-list a:hover {
+            text-decoration: underline;
+        }
+
+/* ================== CONTAINER NỘI DUNG ================== */
+
+.gl-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+/* ================== RESPONSIVE ================== */
+
+@media (max-width: 768px) {
+    .gl-main-header {
+        padding: 10px 16px;
+    }
+
+    .gl-logo {
+        width: 200px;
+        height: auto;
+    }
+
+    .gl-nav-list {
+        gap: 20px;
+    }
+
+        .gl-nav-list a {
+            font-size: 14px;
+        }
 }

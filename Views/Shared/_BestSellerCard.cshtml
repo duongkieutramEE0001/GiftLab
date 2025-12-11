@@ -1,0 +1,34 @@
+﻿@model GiftLab.Models.Product
+
+<div class="bs-card">
+    <div class="bs-image">
+        <img src="@Url.Content(Model.ImagePath)" alt="@Model.Name" />
+
+        @if (Model.IsOnSale)
+        {
+        <div class="bs-sale-badge">Giảm giá</div>
+        }
+    </div>
+
+    <div class="bs-info">
+        <div class="bs-info-top">
+            <span class="bs-category">@Model.Category</span>
+            <span class="bs-rating">⭐ @Model.Rating</span>
+        </div>
+
+        <h3 class="bs-name">@Model.Name</h3>
+
+        <div class="bs-price">
+            <span class="bs-current">
+                @Model.Price.ToString("#,##0 đ")
+            </span>
+
+            @if (Model.OriginalPrice.HasValue)
+            {
+            <span class="bs-old">
+                @Model.OriginalPrice?.ToString("#,##0 đ")
+            </span>
+            }
+        </div>
+    </div>
+</div>

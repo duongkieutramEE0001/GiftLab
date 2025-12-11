@@ -165,3 +165,29 @@
     <button class="col-nav col-next">&#10095;</button>
 </div>
 
+@model GiftLab.ViewModels.HomeIndexViewModel
+
+<section class="gl-best">
+    <div class="gl-best-header">
+        <h2 class="gl-best-title">SẢN PHẨM BÁN CHẠY</h2>
+        <a href="/shop" class="gl-best-link">Xem cửa hàng →</a>
+    </div>
+
+    <div class="gl-best-slider">
+        <button class="gl-best-arrow gl-best-prev">‹</button>
+
+        <div class="gl-best-viewport">
+            <div class="gl-best-track">
+                @foreach (var p in Model.BestSellerProducts)
+                {
+                    @await Html.PartialAsync("_BestSellerCard", p)
+                }
+            </div>
+        </div>
+
+        <button class="gl-best-arrow gl-best-next">›</button>
+    </div>
+</section>
+
+<link rel="stylesheet" href="~/css/bestseller.css" />
+<script src="~/js/bestseller.js"></script>

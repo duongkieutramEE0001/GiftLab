@@ -889,3 +889,208 @@ a {
     }
 }
 
+/* ================== SECTION WRAPPER ================== */
+
+.gl-best {
+    margin-top: 20px;
+}
+
+/* Header: title + "Xem cửa hàng" */
+.gl-best-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-bottom: 18px;
+}
+
+.gl-best-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fb6f92;
+}
+
+/* Button "Xem cửa hàng →" kiểu pill outline */
+.gl-best-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 30px;
+    border-radius: 999px;
+    border: 2px solid #fb6f92;
+    color: #fb6f92;
+    background: transparent;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+    .gl-best-link:hover {
+        background: #fb6f92;
+        color: #fff;
+        box-shadow: 0 6px 16px rgba(251, 111, 146, 0.4);
+    }
+
+/* ================== SLIDER LAYOUT ================== */
+
+.gl-best-slider {
+    position: relative;
+    padding: 20px 60px 60px 60px; /* chừa chỗ hai bên cho arrow */
+}
+
+.gl-best-viewport {
+    overflow: hidden;
+    padding: 20px 0 20px 0;
+    width: 100%;
+}
+
+.gl-best-track {
+    display: flex;
+    gap: 20px;
+    transition: transform .45s ease;
+}
+
+/* ================== ARROWS ================== */
+
+.gl-best-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 30px;
+    color: #fb6f92;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.2s;
+}
+
+    .gl-best-arrow:hover {
+        transform: translateY(-50%) scale(1.05);
+        background: #fb6f92;
+        color: #fff;
+    }
+
+.gl-best-prev {
+    left: 0;
+}
+
+.gl-best-next {
+    right: 0;
+}
+
+/* ================== PRODUCT CARD ================== */
+
+.bs-card {
+    width: 230px; /* khung info + image */
+    cursor: pointer;
+    border-radius: 16px;
+    border: 1px solid #ffd4de;
+    background: #fff;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+    .bs-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        border-color: #fb6f92;
+    }
+
+/* ================== IMAGE AREA ================== */
+
+.bs-image {
+    width: 230px;
+    height: 230px;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+}
+
+    .bs-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+/* Badge giảm giá */
+
+.bs-sale-badge {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 80px;
+    height: 30px;
+    background: #d33a54;
+    color: #fff;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+}
+
+/* ================== TEXT INFO ================== */
+
+.bs-info {
+    margin-top: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.bs-info-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Danh mục sản phẩm */
+.bs-category {
+    font-size: 10px;
+    color: #ff8fab;
+}
+
+/* Số sao */
+.bs-rating {
+    font-size: 13px;
+    color: #ffb907;
+}
+
+/* Tên sản phẩm – 1 dòng, dài thì ... */
+.bs-name {
+    font-size: 14px;
+    color: #4e4e4e;
+    font-weight: 600;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Giá */
+.bs-price {
+    margin-top: 6px;
+}
+
+.bs-current {
+    font-size: 13px;
+    font-weight: bold;
+    color: #735151;
+}
+
+/* Giá gốc nếu có giảm giá */
+.bs-old {
+    font-size: 10px;
+    color: #b4b4b4;
+    margin-left: 6px;
+    text-decoration: line-through;
+}
+

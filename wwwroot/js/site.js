@@ -124,3 +124,103 @@ document.addEventListener('DOMContentLoaded', function () {
     updateSlider(false);
     startAutoplay();
 });
+
+// BEST SELLER
+document.addEventListener("DOMContentLoaded", function () {
+    initBestSellerSlider();
+});
+
+function initBestSellerSlider() {
+    const viewport = document.querySelector(".gl-best-viewport");
+    const track = document.querySelector(".gl-best-track");
+    const prevBtn = document.querySelector(".gl-best-prev");
+    const nextBtn = document.querySelector(".gl-best-next");
+
+    // nếu thiếu phần tử nào thì thôi, khỏi chạy
+    if (!viewport || !track || !prevBtn || !nextBtn) return;
+
+    // lấy danh sách item gốc
+    const originalItems = Array.from(track.children);
+    const originalCount = originalItems.length;
+    if (!originalCount) return;
+
+    // tính kích thước 1 item + gap
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.columnGap || style.gap || "0");
+    const firstRect = originalItems[0].getBoundingClientRect();
+    const itemWidth = firstRect.width + gap;
+
+    // số item hiển thị trong viewport (từ 1 đến originalCount)
+    const visibleCount = Math.max(
+        1,
+        Math.min(originalCount, Math.floor(viewport.clientWidth / itemWidth) || 1)
+    );
+
+    // xoá track, clone đầu/cuối để tạo loop
+    track.innerHTML = "";
+
+    const leadingClones = originalItems
+        .slice(-visibleCount)
+        .map(n => n.cloneNode(true));
+    const trailingClones = originalItems
+        .slice(0, visibleCount)
+        .map(n => n.cloneNode(true));
+
+    const allItems = [...leadingClones, ...originalItems, ...trailingClones];
+    allItems.forEach(n => track.appendChild(n));
+
+    let currentIndex = visibleCount;                    // bắt đầu ở item thật đầu tiên
+    const firstRealIndex = visibleCount;
+    const lastRealIndex = visibleCount + originalCount - 1;
+
+    function applyTransform(noTransition = false) {
+        if (noTransition) {
+            track.style.transition = "none";
+        } else {
+            track.style.transition = "transform 0.45s ease";
+        }
+
+        const offset = -currentIndex * itemWidth;
+        track.style.transform = `translateX(${offset}px)`;
+    }
+
+    // đặt vị trí ban đầu (không animation)
+    applyTransform(true);
+    void track.offsetWidth;                             // force reflow
+    track.style.transition = "transform 0.45s ease";
+
+    function next() {
+        currentIndex++;
+        applyTransform();
+
+        track.addEventListener("transitionend", function handleNext() {
+            if (currentIndex > lastRealIndex) {
+                // đã trượt sang vùng clone sau → nhảy kín về vùng thật
+                currentIndex -= originalCount;
+                applyTransform(true);
+                void track.offsetWidth;
+                track.style.transition = "transform 0.45s ease";
+            }
+            track.removeEventListener("transitionend", handleNext);
+        });
+    }
+
+    function prev() {
+        currentIndex--;
+        applyTransform();
+
+        track.addEventListener("transitionend", function handlePrev() {
+            if (currentIndex < firstRealIndex) {
+                // đã trượt sang vùng clone trước → nhảy kín về vùng thật
+                currentIndex += originalCount;
+                applyTransform(true);
+                void track.offsetWidth;
+                track.style.transition = "transform 0.45s ease";
+            }
+            track.removeEventListener("transitionend", handlePrev);
+        });
+    }
+    // gán sự kiện nút
+    prevBtn.addEventListener("click", prev);
+    nextBtn.addEventListener("click", next);
+}

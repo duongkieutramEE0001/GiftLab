@@ -942,7 +942,7 @@ a {
 
 .gl-best-viewport {
     overflow: hidden;
-    padding: 20px 0 20px 0;
+    padding: 20px 0 40px 0;
     width: 100%;
 }
 
@@ -1001,7 +1001,7 @@ a {
     .bs-card:hover {
         transform: scale(1.05);
         box-shadow: 0 8px 20px rgba(251, 111, 146, 0.3);
-        border-color: #fb6f92;
+        border-color: #ffd4de;
     }
 
 /* ================== IMAGE AREA ================== */
@@ -1158,7 +1158,7 @@ a {
     border: none;
     background: #f5d4d4; /* nền */
     color: #735151; /* chữ */
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
@@ -1203,4 +1203,158 @@ a {
 .fade-visible {
     opacity: 1;
     transform: translateX(0);
+}
+
+@media (max-width: 900px) {
+    .gl-cake {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .gl-cake-text,
+    .gl-cake-image {
+        max-width: 100%;
+        flex: none;
+        padding: 0;
+    }
+
+    .gl-cake-image {
+        margin-top: 20px;
+    }
+}
+
+/* =========================
+   TẠI SAO NÊN CHỌN GIFTLAB
+   ========================= */
+
+.gl-why-section {
+    width: 100vw; 
+    margin-left: 50%;
+    transform: translateX(-50%); 
+    margin-top: 40px;
+    margin-bottom: 50px;
+    padding: 0; 
+    background: url('/images/giatricotloi.png') center/cover no-repeat;
+    overflow: hidden; 
+}
+
+.gl-why-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 0; 
+}
+
+.gl-why-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #ff6995;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* ===== GRID 3 CỘT FULL-WIDTH ===== */
+
+.gl-why-grid {
+    width: 100%;
+    padding: 0 60px; /* khoảng cách 2 bên, vẫn full màn hình */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 34px;
+}
+
+/* ===== CARD CƠ BẢN ===== */
+
+.gl-why-item {
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 22px;
+    padding: 25px 25px;
+    border: 1px solid rgba(255, 150, 180, 0.45);
+    text-align: left;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    overflow: visible;
+}
+
+.gl-why-heading {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff4f8b;
+    margin-bottom: 8px;
+}
+
+.gl-why-text {
+    font-size: 16px;
+    color: #5c3e4e;
+    line-height: 1.55;
+}
+
+/* ===== FADE-IN CƠ BẢN ===== */
+
+.fade-why {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity .6s ease, transform .6s ease;
+}
+
+    .fade-why.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* Delay theo thứ tự m muốn */
+.why-1 {
+    transition-delay: 0.00s;
+}
+
+.why-2 {
+    transition-delay: 0.12s;
+}
+
+.why-3 {
+    transition-delay: 0.24s;
+}
+
+.why-4 {
+    transition-delay: 0.36s;
+}
+
+.why-5 {
+    transition-delay: 0.48s;
+}
+
+.why-6 {
+    transition-delay: 0.60s;
+}
+
+/* ===== HOVER: ZOOM + NỔI LÊN ===== */
+/* Đặt SAU fade-why.visible để override transform */
+
+/* HOVER: ZOOM + NỔI LÊN – KHÔNG BỊ DELAY */
+.gl-why-item:hover {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 18px 40px rgba(255, 120, 160, 0.32);
+    background: rgba(255, 255, 255, 0.97);
+    z-index: 3;
+    /* quan trọng: bỏ delay để hover mượt */
+    transition-delay: 0s;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1024px) {
+    .gl-why-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .gl-why-title {
+        font-size: 26px;
+        margin-bottom: 22px;
+    }
+
+    .gl-why-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
 }

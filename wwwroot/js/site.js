@@ -224,3 +224,19 @@ function initBestSellerSlider() {
     prevBtn.addEventListener("click", prev);
     nextBtn.addEventListener("click", next);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const whyItems = document.querySelectorAll(".fade-why");
+    if (!whyItems.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target); // chỉ chạy 1 lần
+            }
+        });
+    }, { threshold: 0.2 });
+
+    whyItems.forEach(item => observer.observe(item));
+});

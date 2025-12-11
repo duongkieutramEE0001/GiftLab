@@ -174,8 +174,8 @@ a {
 }
 
 .gl-logo {
-    width: 272px;
-    height: 140px;
+    width: 262px;
+    height: 130px;
     object-fit: contain;
     display: block;
     padding: 0 0 0 40px;
@@ -1000,7 +1000,7 @@ a {
 
     .bs-card:hover {
         transform: scale(1.05);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        box-shadow: 0 8px 20px rgba(251, 111, 146, 0.3);
         border-color: #fb6f92;
     }
 
@@ -1030,7 +1030,8 @@ a {
     height: 30px;
     background: #d33a54;
     color: #fff;
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1089,8 +1090,117 @@ a {
 /* Giá gốc nếu có giảm giá */
 .bs-old {
     font-size: 10px;
+    font-weight: bold;
     color: #b4b4b4;
     margin-left: 6px;
     text-decoration: line-through;
 }
 
+/* ===== BÁNH NGỌT SECTION ===== */
+
+.gl-cake {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0;
+    gap: 20px;
+}
+
+.gl-cake-text {
+    flex: 0 0 55%;
+    max-width: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 20px;
+}
+
+.cake-title-line {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 15px; /* khoảng cách giữa 2 chữ */
+}
+
+.cake-title-main {
+    font-family: "Gulfs Display", sans-serif;
+    font-size: 75px;
+    font-weight: 700;
+    color: #bb6767;
+    line-height: 1;
+    letter-spacing: 3px;
+}
+
+.cake-title-sub {
+    font-family: "MeowScript", sans-serif;
+    font-size: 70px;
+    font-weight: 600;
+    color: #735151;
+    line-height: 1;
+}
+
+.cake-desc {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 480px;
+    color: #4e4e4e;
+}
+
+/* Button MUA NGAY */
+.gl-btn-cake {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 40px;
+    border-radius: 999px;
+    border: none;
+    background: #f5d4d4; /* nền */
+    color: #735151; /* chữ */
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, transform .15s ease;
+}
+
+    .gl-btn-cake:hover {
+        box-shadow: 0 8px 18px rgba(241, 223, 223, 1);
+        transform: translateY(-2px);
+    }
+
+/* Hình bên phải */
+.gl-cake-image {
+    flex: 0 0 60%;
+    max-width: 60%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 90px; /* sát viền phải */
+}
+
+    .gl-cake-image img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+/* =======================
+   FADE EFFECT
+   ======================= */
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: 0.8s ease;
+}
+
+.fade-in-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: 0.8s ease;
+}
+
+.fade-visible {
+    opacity: 1;
+    transform: translateX(0);
+}

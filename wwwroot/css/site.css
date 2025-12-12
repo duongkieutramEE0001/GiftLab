@@ -1051,9 +1051,8 @@ a {
     right: 10px; /* Đặt ở góc phải */
     display: flex;
     flex-direction: column;
-    gap: 8px; /* Khoảng cách giữa các icon */
+    gap: 8px; 
     z-index: 10;
-    /* Mặc định ẩn, sẽ hiện ra khi hover */
     opacity: 0;
     transition: opacity .2s ease, transform .3s ease;
     transform: translateX(10px); /* Kéo nhẹ sang phải để tạo hiệu ứng trượt */

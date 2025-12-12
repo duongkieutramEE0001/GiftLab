@@ -9,13 +9,52 @@
 <section class="gl-shop">
     <div class="gl-shop-layout">
 
-        <!-- chừa chỗ filter bên trái -->
-        <aside class="gl-shop-filter">
-            <div class="gl-filter-box">
-                <h3>Bộ lọc</h3>
-                <p>(Chừa chỗ – mốt add bộ lọc ở đây)</p>
+        <aside class="gl-filter">
+            <h3 class="gl-filter-title">Danh mục sản phẩm</h3>
+
+            <label class="gl-check">
+                <input type="checkbox" name="cat" value="Len mềm" />
+                <span class="gl-box"></span>
+                <span class="gl-check-text">Len Mềm</span>
+            </label>
+
+            <label class="gl-check">
+                <input type="checkbox" name="cat" value="Bánh Ngọt" />
+                <span class="gl-box"></span>
+                <span class="gl-check-text">Bánh Ngọt</span>
+            </label>
+
+            <label class="gl-check">
+                <input type="checkbox" name="cat" value="Hạt cườm" />
+                <span class="gl-box"></span>
+                <span class="gl-check-text">Hạt Cườm</span>
+            </label>
+
+            <label class="gl-check">
+                <input type="checkbox" name="cat" value="Đất màu" />
+                <span class="gl-box"></span>
+                <span class="gl-check-text">Đất Màu</span>
+            </label>
+
+            <hr class="gl-filter-line" />
+
+            <h3 class="gl-filter-title">Giá sản phẩm</h3>
+
+            <div class="gl-price-row">
+                <span>0 đ</span>
+                <span>200.000 đ</span>
             </div>
+
+            <input class="gl-range" type="range" min="0" max="200000" step="1000" value="200000"
+                   oninput="document.getElementById('glPriceVal').textContent = this.value.replace(/\B(?=(\d{3})+(?!\d))/g,'.') + ' đ';" />
+
+            <div class="gl-price-value">
+                Giá: <span id="glPriceVal">200.000 đ</span>
+            </div>
+
+            <button type="button" class="gl-filter-btn">Lọc sản phẩm</button>
         </aside>
+
 
         <div class="gl-shop-main">
             <h1 class="gl-shop-title">Cửa hàng</h1>

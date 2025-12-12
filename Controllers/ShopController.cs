@@ -162,7 +162,7 @@ namespace GiftLab.Controllers
                 Category = "Chocolate",
                 ImagePath = "~/images/34.png",
                 Price = 29000,
-                Rating = 4.7,
+                Rating = 4.8,
                 SoldCount = 66
             });
 

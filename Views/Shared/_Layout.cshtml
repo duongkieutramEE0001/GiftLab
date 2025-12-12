@@ -48,17 +48,46 @@
         </div>
 
         <!-- ========== NAVIGATION MENU ========== -->
+        @{
+            var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        }
+
         <nav class="gl-nav">
             <ul class="gl-nav-list">
-                <li><a href="/">TRANG CHỦ</a></li>
-                <li><a href="/about">VỀ CHÚNG TÔI</a></li>
                 <li>
-                    <a asp-controller="Shop" asp-action="Index">CỬA HÀNG</a>
+                    <a asp-controller="Home" asp-action="Index"
+                       class="@(currentController == "Home" ? "active" : "")">
+                        TRANG CHỦ
+                    </a>
                 </li>
-                <li><a href="/cute-things">ĐIỀU NHỎ XINH</a></li>
-                <li><a href="/support">HỖ TRỢ</a></li>
+                <li>
+                    <a asp-controller="About" asp-action="Index"
+                       class="@(currentController == "About" ? "active" : "")">
+                        VỀ CHÚNG TÔI
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Shop" asp-action="Index"
+                       class="@(currentController == "Shop" ? "active" : "")">
+                        CỬA HÀNG
+                    </a>
+                </li>
+                <li>
+                    <a href="/cute-things"
+                       class="@(currentController == "CuteThings" ? "active" : "")">
+                        ĐIỀU NHỎ XINH
+                    </a>
+                </li>
+                <li>
+                    <a href="/support"
+                       class="@(currentController == "Support" ? "active" : "")">
+                        HỖ TRỢ
+                    </a>
+                </li>
+
             </ul>
         </nav>
+
     </header>
 
     <!-- ================= NỘI DUNG TRANG ================= -->

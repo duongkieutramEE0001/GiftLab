@@ -217,6 +217,13 @@ a {
             color: #ff507b;
         }
 
+        /* MENU ACTIVE */
+        .gl-nav-list a.active {
+            color: #ff507b; /* cùng tone hover cho đồng bộ */
+            font-weight: 800; /* nổi hơn chút */
+        }
+
+
 /* ================== CONTAINER NỘI DUNG ================== */
 
 .gl-container {

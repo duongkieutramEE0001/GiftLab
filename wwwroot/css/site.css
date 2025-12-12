@@ -32,6 +32,13 @@ body {
 }
 
 @font-face {
+    font-family: 'Cigra Free Demo';
+    src: url('/fonts/Cigra Free Demo.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Gulfs Display';
     src: url('/fonts/Gulfs Display Normal.ttf') format('truetype');
     font-weight: 100;
@@ -260,7 +267,7 @@ a {
         }
 
             .gl-footer-col ul li a:hover {
-                text-decoration: underline;
+                color: #ff507b;
             }
 
 /* Logo */
@@ -1304,8 +1311,8 @@ a {
     width: 100vw; 
     margin-left: 50%;
     transform: translateX(-50%); 
-    margin-top: 40px;
-    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 0; 
     background: url('/images/giatricotloi.png') center/cover no-repeat;
     overflow: hidden; 
@@ -1401,13 +1408,11 @@ a {
 /* ===== HOVER: ZOOM + NỔI LÊN ===== */
 /* Đặt SAU fade-why.visible để override transform */
 
-/* HOVER: ZOOM + NỔI LÊN – KHÔNG BỊ DELAY */
 .gl-why-item:hover {
     transform: scale(1.05) translateY(-10px);
     box-shadow: 0 18px 40px rgba(255, 120, 160, 0.32);
     background: rgba(255, 255, 255, 0.97);
     z-index: 3;
-    /* quan trọng: bỏ delay để hover mượt */
     transition-delay: 0s;
 }
 
@@ -1429,5 +1434,249 @@ a {
     .gl-why-grid {
         grid-template-columns: 1fr;
         padding: 0 20px;
+    }
+}
+
+/* ===== TEXT MARQUEE ===== */
+.gl-text-marquee {
+    width: 100vw;
+    height: 50px;
+    background: #ffd4de;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0; 
+    margin-top: 40px; 
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw; 
+    margin-right: -50vw; 
+}
+
+.gl-text-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-text 15s linear infinite;
+}
+
+    .gl-text-track span {
+        font-family: 'Cigra Free Demo', sans-serif;
+        white-space: nowrap;
+        font-size: 18px;
+        font-weight: 500;
+        color: #e84b6a;
+        margin-right: 40px;
+        letter-spacing: 0.5px;
+    }
+
+/* Animation chạy ngang */
+@keyframes marquee-text {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.gl-text-marquee:hover .gl-text-track {
+    animation-play-state: paused;
+}
+
+.gl-review {
+    padding: 60px 0;
+}
+
+.gl-review-title {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+    color: #ff8fab;
+    margin-bottom: 28px;
+}
+
+.gl-review-inner {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 72px; /* chừa chỗ cho 2 nút */
+}
+
+.gl-review-viewport {
+    overflow: hidden;
+    padding: 40px 0 40px 0;
+}
+
+.gl-review-track {
+    display: flex;
+    gap: 28px;
+    transition: transform .5s ease;
+    will-change: transform;
+}
+
+.gl-review-card {
+    flex: 0 0 360px;
+    border: 1px solid #e6e6e6;
+    border-radius: 20px;
+    background: #fff;
+    padding: 26px 28px;
+    text-align: center;
+    /* thêm */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+    /* HOVER */
+    .gl-review-card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 16px 40px rgba(251, 111, 146, 0.3);
+    }
+
+.gl-review-stars {
+    color: #ffde59;
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+}
+
+.gl-review-text {
+    color: #d33a54;
+    line-height: 1.6;
+    margin: 0 0 18px;
+}
+
+.gl-review-name {
+    color: #d33a54;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* NÚT */
+.gl-review-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+    cursor: pointer;
+    font-size: 22px;
+    color: #fb6f92;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10; /* <- để khỏi bị card/viewport che */
+}
+
+.gl-review-prev {
+    left: 18px;
+}
+
+.gl-review-next {
+    right: 18px;
+}
+
+.gl-review-btn:hover {
+    background: #fb6f92;
+    color: #fff;
+}
+
+/* ================== RESPONSIVE: marquee + review ================== */
+@media (max-width: 768px) {
+
+    /* ===== TEXT MARQUEE ===== */
+    .gl-text-marquee {
+        padding: 10px 0;
+    }
+
+    .gl-text-track {
+        gap: 24px; /* khoảng cách chữ nhỏ lại */
+        animation-duration: 16s; /* chạy nhanh hơn chút cho vừa màn */
+    }
+
+        .gl-text-track span {
+            font-size: 16px;
+            padding: 0 6px;
+            white-space: nowrap;
+        }
+
+    /* ===== REVIEW SLIDER ===== */
+    .gl-review {
+        padding: 40px 16px;
+    }
+
+    .gl-review-title {
+        font-size: 28px;
+        line-height: 1.2;
+        padding: 0 8px;
+    }
+
+    .gl-review-inner {
+        position: relative;
+        padding: 0 44px; /* chừa chỗ cho 2 nút */
+    }
+
+    .gl-review-viewport {
+        overflow: hidden;
+    }
+
+    .gl-review-track {
+        gap: 16px;
+    }
+
+    .gl-review-card {
+        flex: 0 0 82vw; /* card to theo màn */
+        max-width: 420px;
+        padding: 22px 18px;
+    }
+
+        .gl-review-card .stars {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .gl-review-card p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .gl-review-card .name {
+            font-size: 16px;
+            margin-top: 12px;
+        }
+
+    /* nút điều hướng */
+    .gl-review-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+    }
+
+        .gl-review-btn.prev {
+            left: 6px;
+        }
+
+        .gl-review-btn.next {
+            right: 6px;
+        }
+}
+
+/* Mobile nhỏ hơn nữa */
+@media (max-width: 480px) {
+    .gl-text-track span {
+        font-size: 14px;
+    }
+
+    .gl-review-title {
+        font-size: 24px;
+    }
+
+    .gl-review-card {
+        flex: 0 0 88vw;
     }
 }

@@ -6,5 +6,6 @@ namespace GiftLab.ViewModels
     public class HomeIndexViewModel
     {
         public IList<Product> BestSellerProducts { get; set; } = new List<Product>();
+        public List<Review> Reviews { get; set; } = new();
     }
 }

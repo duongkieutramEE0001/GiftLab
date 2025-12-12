@@ -240,3 +240,84 @@ document.addEventListener("DOMContentLoaded", () => {
 
     whyItems.forEach(item => observer.observe(item));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const track = document.querySelector(".gl-review-track");
+    const viewport = document.querySelector(".gl-review-viewport");
+    const prevBtn = document.querySelector(".gl-review-prev");
+    const nextBtn = document.querySelector(".gl-review-next");
+
+    if (!track || !viewport || !prevBtn || !nextBtn) {
+        console.warn("Review slider missing elements", { track, viewport, prevBtn, nextBtn });
+        return;
+    }
+
+    const original = Array.from(track.children);
+    const count = original.length;
+    if (!count) return;
+
+    const gap = parseFloat(getComputedStyle(track).gap || "0");
+    const cardW = original[0].getBoundingClientRect().width + gap;
+    const visible = Math.max(1, Math.floor(viewport.clientWidth / cardW));
+
+    const head = original.slice(0, visible).map(n => n.cloneNode(true));
+    const tail = original.slice(-visible).map(n => n.cloneNode(true));
+
+    track.innerHTML = "";
+    [...tail, ...original, ...head].forEach(n => track.appendChild(n));
+
+    let index = visible;
+    const firstReal = visible;
+    const lastReal = visible + count - 1;
+    let lock = false;
+
+    function setX(noAnim = false) {
+        track.style.transition = noAnim ? "none" : "transform .5s ease";
+        track.style.transform = `translateX(${-index * cardW}px)`;
+    }
+
+    function next() {
+        if (lock) return;
+        lock = true;
+
+        index++;
+        setX(false);
+
+        track.addEventListener("transitionend", function h() {
+            if (index > lastReal) {
+                index -= count;
+                setX(true);
+                void track.offsetWidth;
+                setX(false);
+            }
+            lock = false;
+            track.removeEventListener("transitionend", h);
+        });
+    }
+
+    function prev() {
+        if (lock) return;
+        lock = true;
+
+        index--;
+        setX(false);
+
+        track.addEventListener("transitionend", function h() {
+            if (index < firstReal) {
+                index += count;
+                setX(true);
+                void track.offsetWidth;
+                setX(false);
+            }
+            lock = false;
+            track.removeEventListener("transitionend", h);
+        });
+    }
+
+    prevBtn.addEventListener("click", prev);
+    nextBtn.addEventListener("click", next);
+
+    setX(true);
+    void track.offsetWidth;
+    setX(false);
+});

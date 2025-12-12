@@ -1,4 +1,6 @@
-﻿@{
+﻿@model GiftLab.ViewModels.HomeIndexViewModel
+
+@{
     ViewData["Title"] = "Trang chủ";
 }
 
@@ -165,8 +167,6 @@
     <button class="col-nav col-next">&#10095;</button>
 </div>
 
-@model GiftLab.ViewModels.HomeIndexViewModel
-
 <section class="gl-best">
     <div class="gl-best-header">
         <h2 class="gl-best-title">SẢN PHẨM BÁN CHẠY</h2>
@@ -272,3 +272,47 @@
         </div>
     </div>
 </section>
+
+<section class="gl-text-marquee">
+    <div class="gl-text-track">
+        <span>Sweet Gifts for Sweet Moments 🎀</span>
+        <span>Sweet Gifts for Sweet Moments 🎀</span>
+        <span>Sweet Gifts for Sweet Moments 🎀</span>
+        <span>Sweet Gifts for Sweet Moments 🎀</span>
+
+        <!-- lặp lại để tạo vòng lặp mượt -->
+        <span>Sweet Gifts for Sweet Moments 🎀</span>
+        <span>Sweet Gifts for Sweet Moments 🎀</span>
+        <span>Sweet Gifts for Sweet Moments 🎀</span>
+        <span>Sweet Gifts for Sweet Moments 🎀</span>
+    </div>
+</section>
+
+<section class="gl-review">
+    <h2 class="gl-review-title">Khách hàng nói gì về GIFTLAB?</h2>
+
+    <div class="gl-review-inner">
+        <button type="button" class="gl-review-btn gl-review-prev">‹</button>
+
+        <div class="gl-review-viewport">
+            <div class="gl-review-track">
+                @for (int i = 0; i < Model.Reviews.Count; i++)
+                {
+                    var r = Model.Reviews[i];
+                    var stars = new string('★', Math.Clamp(r.Stars, 1, 5));
+
+                    <article class="gl-review-card">
+                        <div class="gl-review-stars">@stars</div>
+                        <p class="gl-review-text">@r.Content</p>
+                        <div class="gl-review-name">@r.Name</div>
+                    </article>
+                }
+            </div>
+        </div>
+
+        <button type="button" class="gl-review-btn gl-review-next">›</button>
+    </div>
+</section>
+
+<link rel="stylesheet" href="~/css/review.css" />
+<script defer src="~/js/review.js"></script>

@@ -3,6 +3,15 @@
 <div class="bs-card">
     <div class="bs-image">
         <img src="@Url.Content(Model.ImagePath)" alt="@Model.Name" />
+        
+        <div class="bs-hover-icons">
+            <button class="bs-icon-btn heart" title="Yêu thích">
+                <img src="@Url.Content("images/mini-heart.png")" alt="Yêu thích" />
+            </button>
+            <button class="bs-icon-btn cart" title="Thêm vào giỏ hàng">
+                <img src="@Url.Content("images/mini-cart.png")" alt="Giỏ hàng" />
+            </button>
+        </div>
 
         @if (Model.IsOnSale)
         {

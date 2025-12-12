@@ -174,8 +174,8 @@ a {
 }
 
 .gl-logo {
-    width: 262px;
-    height: 130px;
+    width: 222px;
+    height: 90px;
     object-fit: contain;
     display: block;
     padding: 0 0 0 40px;
@@ -201,13 +201,13 @@ a {
 
     .gl-nav-list a {
         text-decoration: none;
-        color: #d70025;
+        color: #d70025 ;
         font-size: 16px;
         font-weight: 700;
     }
 
         .gl-nav-list a:hover {
-            text-decoration: underline;
+            color: #ff507b;
         }
 
 /* ================== CONTAINER NỘI DUNG ================== */
@@ -921,9 +921,9 @@ a {
     border: 2px solid #fb6f92;
     color: #fb6f92;
     background: transparent;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 700;
     text-decoration: none;
-    font-weight: 500;
     transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
 }
 
@@ -1037,6 +1037,79 @@ a {
     align-items: center;
     border-radius: 6px;
 }
+/* Container chứa các icon: Định vị tuyệt đối trong bs-image */
+.bs-hover-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px; /* Đặt ở góc phải */
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Khoảng cách giữa các icon */
+    z-index: 10;
+    /* Mặc định ẩn, sẽ hiện ra khi hover */
+    opacity: 0;
+    transition: opacity .2s ease, transform .3s ease;
+    transform: translateX(10px); /* Kéo nhẹ sang phải để tạo hiệu ứng trượt */
+}
+
+/* Hiển thị icons khi hover card */
+.bs-card:hover .bs-hover-icons {
+    opacity: 1;
+    transform: translateX(0); /* Đưa về vị trí ban đầu */
+}
+
+/* Định kiểu cho nút icon */
+.bs-icon-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform .2s ease, background-color .2s ease, color .2s ease;
+    padding: 0; /* Đảm bảo hình ảnh fit hoàn hảo */
+}
+
+    .bs-icon-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    /* Xử lý hình ảnh icon bên trong nút button */
+    .bs-icon-btn img {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+        filter: invert(0%); /* Mặc định */
+        transition: filter .2s ease;
+    }
+
+    /* Màu sắc và hiệu ứng cho icon Trái tim (Yêu thích) */
+    .bs-icon-btn.heart {
+        background-color: #fff;
+    }
+
+        .bs-icon-btn.heart:hover {
+            background-color: #fb6f92; /* Nền hồng khi hover */
+        }
+
+            .bs-icon-btn.heart:hover img {
+                /* Chuyển icon sang màu trắng khi hover (áp dụng nếu icon gốc là màu đen) */
+                filter: brightness(0) invert(1);
+            }
+
+    /* Màu sắc và hiệu ứng cho icon Giỏ hàng */
+    .bs-icon-btn.cart {
+        background-color: #fb6f92;
+    }
+
+        .bs-icon-btn.cart:hover {
+            background-color: #d33a54; /* Nền đỏ đậm hơn khi hover */
+        }
 
 /* ================== TEXT INFO ================== */
 

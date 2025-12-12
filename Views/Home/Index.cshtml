@@ -15,7 +15,7 @@
         </p>
 
         <div class="gl-hero-actions">
-            <a href="/shop" class="gl-btn gl-btn-primary">MUA NGAY</a>
+            <a asp-controller="Shop" asp-action="Index" class="gl-btn gl-btn-primary">MUA NGAY</a>
             <a href="/about" class="gl-btn gl-btn-secondary">XEM THÊM</a>
         </div>
     </div>
@@ -77,9 +77,8 @@
             DANH MỤC SẢN PHẨM
         </h2>
 
-        <a href="/shop" class="gl-category-link">
-            Xem cửa hàng →
-        </a>
+        <a asp-controller="Shop" asp-action="Index" class="gl-category-link">Xem cửa hàng →</a>
+
     </div>
 
     <div class="gl-category-list">
@@ -170,7 +169,7 @@
 <section class="gl-best">
     <div class="gl-best-header">
         <h2 class="gl-best-title">SẢN PHẨM BÁN CHẠY</h2>
-        <a href="/shop" class="gl-best-link">Xem cửa hàng →</a>
+        <a asp-controller="Shop" asp-action="Index" class="gl-best-link">Xem cửa hàng →</a>
     </div>
 
     <div class="gl-best-slider">
@@ -180,7 +179,7 @@
             <div class="gl-best-track">
                 @foreach (var p in Model.BestSellerProducts)
                 {
-                    @await Html.PartialAsync("_BestSellerCard", p)
+                    @await Html.PartialAsync("_ProductCard", p)
                 }
             </div>
         </div>

@@ -1,0 +1,57 @@
+﻿@model GiftLab.ViewModels.ShopIndexViewModel
+
+@{
+    ViewData["Title"] = "Cửa hàng";
+}
+
+<link rel="stylesheet" href="~/css/shop.css" />
+
+<section class="gl-shop">
+    <div class="gl-shop-layout">
+
+        <!-- chừa chỗ filter bên trái -->
+        <aside class="gl-shop-filter">
+            <div class="gl-filter-box">
+                <h3>Bộ lọc</h3>
+                <p>(Chừa chỗ – mốt add bộ lọc ở đây)</p>
+            </div>
+        </aside>
+
+        <div class="gl-shop-main">
+            <h1 class="gl-shop-title">Cửa hàng</h1>
+
+            <div class="gl-shop-grid">
+                @foreach (var p in Model.Products)
+                {
+                @await Html.PartialAsync("_ProductCard", p)
+                }
+            </div>
+
+            @if (Model.TotalPages > 1)
+            {
+            <div class="gl-shop-paging">
+                @{
+                var prevPage = Model.Page - 1;
+                var nextPage = Model.Page + 1;
+
+                var prevUrl = Url.Action("Index", "Shop", new { page = prevPage });
+                var nextUrl = Url.Action("Index", "Shop", new { page = nextPage });
+                }
+
+                <a class="gl-page-btn @(Model.Page <= 1 ? " is-disabled" : "" )"
+                   href="@(Model.Page <= 1 ? " #" : prevUrl)">
+                    ‹ Trước
+                </a>
+
+                <span class="gl-page-info">Trang @Model.Page / @Model.TotalPages</span>
+
+                <a class="gl-page-btn @(Model.Page >= Model.TotalPages ? " is-disabled" : "" )"
+                   href="@(Model.Page >= Model.TotalPages ? " #" : nextUrl)">
+                    Sau ›
+                </a>
+            </div>
+            }
+        </div>
+
+    </div>
+</section>

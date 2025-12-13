@@ -90,6 +90,10 @@
 
     </header>
 
+    <button id="scrollToTopBtn" title="Trở về đầu trang">
+        <img src="~/images/sttop.png" alt="Mũi tên lên" />
+    </button>
+
     <!-- ================= NỘI DUNG TRANG ================= -->
     <div class="gl-container">
         <main role="main">
@@ -145,3 +149,28 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var scrollButton = $("#scrollToTopBtn");
+        var scrollDistance = 300; // Khoảng cách cuộn để nút hiện
+
+        // 1. Logic hiển thị/ẩn nút khi cuộn
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > scrollDistance) {
+                scrollButton.fadeIn(200); // Hiện nút với hiệu ứng mượt
+            } else {
+                scrollButton.fadeOut(200); // Ẩn nút với hiệu ứng mượt
+            }
+        });
+
+        // 2. Logic cuộn về đầu trang khi click
+        scrollButton.click(function () {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
+    });
+</script>

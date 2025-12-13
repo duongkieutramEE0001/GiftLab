@@ -69,6 +69,32 @@ body {
 a {
     color: inherit;
 }
+#scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    box-shadow: 0 4px 8px rgba(251, 111, 146, 0.3);
+    transition: background-color 0.3s, opacity 0.3s;
+    /* Căn giữa hình ảnh */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+    /* Định kiểu cho hình ảnh bên trong nút */
+    #scrollToTopBtn img {
+        width: 100%; 
+        height: 100%;
+    }
 
 /* ================== HEADER WRAPPER ================== */
 

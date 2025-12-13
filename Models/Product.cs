@@ -9,11 +9,16 @@
         public string Category { get; set; } = "";
 
         public string ImagePath { get; set; } = "";
+        public string ShortDescription { get; set; } = "";
+        public string Description { get; set; } = "";
         public decimal Price { get; set; }
         public decimal? OriginalPrice { get; set; }
 
         public double Rating { get; set; }
-        public int SoldCount { get; set; }     // dùng để tính sp bán chạy
+        public int SoldCount { get; set; }      // dùng để tính sp bán chạy
+
+        // 🚨 THÊM THUỘC TÍNH NÀY: Danh sách các biến thể/phân loại
+        public List<ProductVariant> Variants { get; set; } = new List<ProductVariant>();
 
         public bool IsOnSale =>
             OriginalPrice.HasValue && OriginalPrice > Price;

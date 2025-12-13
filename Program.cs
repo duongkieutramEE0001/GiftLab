@@ -1,15 +1,30 @@
+using Microsoft.EntityFrameworkCore;
+using GiftLab.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// =====================
+// ADD SERVICES
+// =====================
+
+// MVC
 builder.Services.AddControllersWithViews();
+
+// EF Core - SQL Server
+builder.Services.AddDbContext<GiftLabDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    )
+);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// =====================
+// MIDDLEWARE
+// =====================
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -20,8 +35,12 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// =====================
+// ROUTING
+// =====================
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+

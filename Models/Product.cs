@@ -17,5 +17,7 @@
 
         public bool IsOnSale =>
             OriginalPrice.HasValue && OriginalPrice > Price;
+        public string? ShortDescription { get; set; }
+        public List<string> Variants { get; set; } = new();
     }
 }

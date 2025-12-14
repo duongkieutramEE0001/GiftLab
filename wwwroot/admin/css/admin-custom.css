@@ -46,6 +46,34 @@
     background: #f9fafb; /* Light gray background like in image */
 }
 
+.admin-header .navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    height: 100%;
+}
+
+.admin-header .navbar-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
+}
+
+.admin-header .navbar-nav .dropdown {
+    position: relative;
+}
+
+.admin-header .navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    margin-top: 0.125rem;
+}
+
 /* Hamburger button in light gray rounded box */
 .admin-header .btn-light[data-sidebar-toggle] {
     /* background: #f3f4f6; */
@@ -364,26 +392,97 @@
 /* Responsive */
 @media (max-width: 768px) {
     .admin-sidebar {
-        top: 56px;
+        top: 0;
+        width: 70px; /* Collapsed width trên mobile */
+        transform: translateX(-100%); /* Mặc định ẩn */
+        transition: transform 0.3s ease;
+    }
+
+    /* Khi sidebar mở trên mobile - hiển thị dạng collapse */
+    .admin-wrapper:not(.sidebar-collapsed) .admin-sidebar {
+        transform: translateX(0);
+        width: 70px; /* Luôn giữ width collapse trên mobile */
+    }
+
+    /* Khi sidebar đóng trên mobile - ẩn hoàn toàn */
+    .admin-wrapper.sidebar-collapsed .admin-sidebar {
         transform: translateX(-100%);
     }
 
-    .admin-wrapper.sidebar-collapsed .admin-sidebar {
-        transform: translateX(0);
+    /* Khi sidebar-collapsed trên mobile: header và main full width */
+    .admin-wrapper.sidebar-collapsed .admin-header {
+        left: 0;
+        right: 0;
     }
 
+    .admin-wrapper.sidebar-collapsed .admin-main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    /* Khi sidebar mở trên mobile: header và main có margin */
+    .admin-wrapper:not(.sidebar-collapsed) .admin-header {
+        left: 70px;
+        right: 0;
+    }
+
+    .admin-wrapper:not(.sidebar-collapsed) .admin-main {
+        margin-left: 70px;
+    }
+
+    /* Đảm bảo sidebar content hiển thị đúng khi collapse */
+    .admin-wrapper:not(.sidebar-collapsed) .sidebar-nav .nav-link span {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+        display: none;
+    }
+
+    .admin-wrapper:not(.sidebar-collapsed) .sidebar-nav .nav-link {
+        justify-content: center;
+        align-items: center;
+        padding: 0.75rem;
+    }
+
+    .admin-wrapper:not(.sidebar-collapsed) .sidebar-nav .nav-link i {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .admin-wrapper:not(.sidebar-collapsed) .sidebar-logo a span {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+        display: none;
+    }
+
+    .admin-wrapper:not(.sidebar-collapsed) .sidebar-logo {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .admin-wrapper:not(.sidebar-collapsed) .sidebar-logo a {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .admin-wrapper:not(.sidebar-collapsed) .sidebar-nav small {
+        display: none;
+    }
+
+    /* Mặc định trên mobile */
     .admin-main {
         margin-left: 0;
         margin-top: 56px;
+        transition: margin-left 0.3s ease;
     }
 
-    .hamburger-menu {
+    .admin-header {
+        transition: left 0.3s ease;
+    }
+
+    #toggle-menu {
         display: block;
-        top: 70px; /* Điều chỉnh vị trí hamburger menu */
-    }
-
-    .search-container {
-        display: none !important;
     }
 }
 
@@ -411,6 +510,25 @@
     color: #6366f1;
 }
 
+[data-bs-theme="dark"] .admin-header .btn-light[data-sidebar-toggle],
+[data-bs-theme="dark"] #toggle-menu {
+    background: #374151;
+    color: #f9fafb;
+    border: 1px solid #4b5563;
+}
+
+[data-bs-theme="dark"] .admin-header .btn-light[data-sidebar-toggle]:hover,
+[data-bs-theme="dark"] #toggle-menu:hover {
+    background: #4b5563;
+    color: #f9fafb;
+}
+
+[data-bs-theme="dark"] .admin-header .btn-light[data-sidebar-toggle].is-active,
+[data-bs-theme="dark"] #toggle-menu.is-active {
+    background: #4b5563;
+    color: #f9fafb;
+}
+
 [data-bs-theme="dark"] .hamburger-menu {
     background: #1f2937;
     border: 1px solid #374151;
@@ -425,22 +543,6 @@
     background: #6366f1;
     color: white;
     border-color: #6366f1;
-}
-
-[data-bs-theme="dark"] .admin-header .btn-light[data-sidebar-toggle] {
-    background: #374151;
-    color: #f9fafb;
-    border: 1px solid #4b5563;
-}
-
-[data-bs-theme="dark"] .admin-header .btn-light[data-sidebar-toggle]:hover {
-    background: #4b5563;
-    color: #f9fafb;
-}
-
-[data-bs-theme="dark"] .admin-header .btn-light[data-sidebar-toggle].is-active {
-    background: #4b5563;
-    color: #f9fafb;
 }
 
 [data-bs-theme="dark"] .admin-footer {

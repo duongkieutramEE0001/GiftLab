@@ -60,5 +60,22 @@ namespace GiftLab.Controllers
             }
             return View(model);
         }
+
+        // 4. Trang Đơn hàng của tôi
+        [Route("account/orders")]
+        public IActionResult Orders()
+        {
+            ViewData["Title"] = "Đơn hàng của tôi";
+            return View();
+        }
+
+        // 5. Chi tiết đơn hàng
+        [Route("account/orders/{id}")]
+        public IActionResult OrderDetails(int id)
+        {
+            ViewData["Title"] = "Chi tiết đơn hàng #" + id;
+            ViewData["OrderId"] = id;
+            return View();
+        }
     }
 }

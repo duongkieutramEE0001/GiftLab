@@ -13,30 +13,47 @@
 
     // Sidebar Toggle
     function initSidebar() {
-        const toggleButton = document.querySelector('[data-sidebar-toggle]');
+        const toggleButtons = document.querySelectorAll('[data-sidebar-toggle]');
         const wrapper = document.getElementById('admin-wrapper');
+        const isMobile = window.innerWidth <= 768;
 
-        if (toggleButton && wrapper) {
-            // Set initial state from localStorage
-            const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
-            if (isCollapsed) {
+        if (toggleButtons.length > 0 && wrapper) {
+            // Set initial state from localStorage (chỉ trên desktop)
+            if (!isMobile) {
+                const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+                if (isCollapsed) {
+                    wrapper.classList.add('sidebar-collapsed');
+                    toggleButtons.forEach(btn => btn.classList.add('is-active'));
+                }
+            } else {
+                // Trên mobile, mặc định ẩn sidebar
                 wrapper.classList.add('sidebar-collapsed');
-                toggleButton.classList.add('is-active');
             }
 
-            // Attach click listener
-            toggleButton.addEventListener('click', function() {
-                const isCurrentlyCollapsed = wrapper.classList.contains('sidebar-collapsed');
-                
-                if (isCurrentlyCollapsed) {
-                    wrapper.classList.remove('sidebar-collapsed');
-                    toggleButton.classList.remove('is-active');
-                    localStorage.setItem('sidebar-collapsed', 'false');
-                } else {
-                    wrapper.classList.add('sidebar-collapsed');
-                    toggleButton.classList.add('is-active');
-                    localStorage.setItem('sidebar-collapsed', 'true');
-                }
+            // Attach click listener cho tất cả toggle buttons
+            toggleButtons.forEach(toggleButton => {
+                toggleButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isCurrentlyCollapsed = wrapper.classList.contains('sidebar-collapsed');
+                    
+                    if (isCurrentlyCollapsed) {
+                        // Mở sidebar
+                        wrapper.classList.remove('sidebar-collapsed');
+                        toggleButtons.forEach(btn => btn.classList.add('is-active'));
+                        if (!isMobile) {
+                            localStorage.setItem('sidebar-collapsed', 'false');
+                        }
+                    } else {
+                        // Đóng sidebar
+                        wrapper.classList.add('sidebar-collapsed');
+                        toggleButtons.forEach(btn => btn.classList.remove('is-active'));
+                        if (!isMobile) {
+                            localStorage.setItem('sidebar-collapsed', 'true');
+                        }
+                    }
+                });
             });
         }
     }

@@ -1,0 +1,125 @@
+﻿@model GiftLab.ViewModels.AccountDashboardViewModel
+@{
+    ViewData["Title"] = "Tài khoản";
+}
+
+<link rel="stylesheet" href="~/css/user.css" />
+
+<section class="gl-user">
+    <div class="gl-user-wrap">
+
+        <aside class="gl-user-side">
+            <div class="gl-user-card">
+                <div class="gl-user-avatar"></div>
+                <div class="gl-user-name">@Model.Customer?.FullName</div>
+                <div class="gl-user-email">@ViewBag.Email</div>
+            </div>
+
+            <nav class="gl-user-menu">
+                <a class="gl-user-link @(Model.ActiveTab=="profile" ? "active" : "")"
+                   href="@Url.Action("Index","User", new { tab="profile" })">
+                    Thông tin tài khoản
+                </a>
+
+                <a class="gl-user-link @(Model.ActiveTab=="orders" ? "active" : "")"
+                   href="@Url.Action("Index","User", new { tab="orders" })">
+                    Lịch sử đơn hàng
+                </a>
+
+                <a class="gl-user-link @(Model.ActiveTab=="password" ? "active" : "")"
+                   href="@Url.Action("Index","User", new { tab="password" })">
+                    Đổi mật khẩu
+                </a>
+            </nav>
+
+            <div class="gl-user-logout">
+                <form asp-controller="User" asp-action="Logout" method="post">
+                    <button type="submit" class="gl-logout-btn">
+                        Đăng xuất
+                    </button>
+                </form>
+            </div>
+
+        </aside>
+
+        <main class="gl-user-main">
+            @if (Model.ActiveTab == "orders")
+            {
+                <h1 class="gl-user-title">Lịch sử đơn hàng</h1>
+
+                <div class="gl-user-box">
+                    @if (Model.Orders == null || !Model.Orders.Any())
+                    {
+                        <p style="margin:0;color:#666;font-weight:600;">Chưa có đơn hàng nào.</p>
+                    }
+                    else
+                    {
+                        <div class="gl-orders-list">
+                            @foreach (var o in Model.Orders)
+                            {
+                                <div class="gl-order-row">
+                                    <div class="gl-order-left">
+                                        <div class="gl-order-code">@o.Code</div>
+                                        <div class="gl-order-date">@o.CreatedAt.ToString("dd/MM/yyyy")</div>
+                                    </div>
+
+                                    <a class="gl-order-link"
+                                       href="@Url.Action("Index", "User", new { tab = "orders", code = o.Code })">
+                                        Xem chi tiết
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+
+                @if (Model.ActiveOrder != null)
+                {
+                    <div class="gl-user-box">
+                        <h3>Chi tiết đơn: @Model.ActiveOrder.Code</h3>
+
+                        <div class="gl-order-detail">
+                            <p><b>Trạng thái:</b> @Model.ActiveOrder.Status</p>
+                            <p><b>Tổng tiền:</b> @Model.ActiveOrder.Total.ToString("#,##0 đ")</p>
+                        </div>
+                    </div>
+                }
+            }
+            else if (Model.ActiveTab == "password")
+            {
+                <h1 class="gl-user-title">Đổi mật khẩu</h1>
+
+                <div class="gl-user-box">
+                    <p style="margin:0;">(Demo) Sau này nối DB thì làm form đổi mật khẩu ở đây.</p>
+                </div>
+            }
+            else
+            {
+                <h1 class="gl-user-title">Thông tin tài khoản</h1>
+
+                <div class="gl-user-box">
+                    <h3>Thông tin cơ bản</h3>
+                    <p><b>Họ tên:</b> @Model.Customer?.FullName</p>
+                    <p><b>Email:</b> @ViewBag.Email</p>
+                </div>
+
+                <div class="gl-user-box">
+                    <h3>Địa chỉ</h3>
+
+                    @foreach (var a in Model.Addresses)
+                    {
+                        <p style="margin:8px 0;">
+                            • <b>@a.Title</b>: @a.Detail
+                            @if (a.IsDefault)
+                            {
+                                <span style="color:#d70025;font-weight:700;"> (Mặc định)</span>
+                            }
+                        </p>
+                    }
+                </div>
+            }
+        </main>
+
+
+    </div>
+</section>

@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GiftLab.Models; 
+using GiftLab.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace GiftLab.Controllers
 {
@@ -7,20 +10,54 @@ namespace GiftLab.Controllers
     {
         // 1. Trang Đăng nhập
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string? returnUrl = null)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(model);
+
+            // ✅ DEMO check (sau này thay DB)
+            // Ví dụ: email demo@giftlab.vn, pass 123456
+            var ok = model.Email?.Trim().ToLower() == "demo@giftlab.vn"
+                     && model.Password == "123456";
+
+            if (!ok)
             {
-                // Xử lý Logic Đăng nhập thực tế
-                return RedirectToAction("Index", "Home");
+                ModelState.AddModelError(string.Empty, "Đăng nhập không thành công. Vui lòng kiểm tra email/mật khẩu.");
+                return View(model); // ở lại trang login
             }
-            return View(model);
+
+            // ✅ Tạo claims -> Cookie
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, "Khách hàng demo"),
+                new Claim(ClaimTypes.Email, model.Email!)
+            };
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                principal,
+                new AuthenticationProperties
+                {
+                    IsPersistent = model.RememberMe,
+                    ExpiresUtc = model.RememberMe ? DateTimeOffset.UtcNow.AddDays(7) : DateTimeOffset.UtcNow.AddHours(2)
+                });
+
+            // ✅ nếu có returnUrl hợp lệ thì quay lại đó
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                return Redirect(returnUrl);
+
+            // ✅ mặc định vào trang tài khoản
+            return RedirectToAction("Index", "User");
         }
 
         // 2. Trang Đăng ký
@@ -35,7 +72,6 @@ namespace GiftLab.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Xử lý Logic Đăng ký thực tế
                 return RedirectToAction("Login", "Account");
             }
             return View(model);
@@ -45,7 +81,7 @@ namespace GiftLab.Controllers
         [HttpGet]
         public IActionResult ForgotPassword()
         {
-            return View(); // Trả về View trống
+            return View();
         }
 
         [HttpPost]
@@ -53,8 +89,6 @@ namespace GiftLab.Controllers
         {
             if (ModelState.IsValid)
             {
-                // TODO: Xử lý logic gửi email đặt lại mật khẩu thực tế
-
                 ViewBag.Message = "Nếu địa chỉ email tồn tại, chúng tôi đã gửi hướng dẫn đặt lại mật khẩu. Vui lòng kiểm tra email của bạn.";
                 return View(model);
             }

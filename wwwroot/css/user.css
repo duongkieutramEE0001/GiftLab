@@ -1,0 +1,243 @@
+﻿.gl-user {
+    padding: 40px 0;
+    background: #fff;
+}
+
+/* Trong file user.css */
+
+.gl-user-wrap {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 320px 850px;
+    gap: 28px;
+}
+
+.gl-user-side {
+    position: sticky;
+    top: 110px;
+    align-self: start;
+}
+
+.gl-user-card {
+    background: #fff;
+    border: 1px solid #ffd4de;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 10px 24px rgba(251,111,146,.12);
+    text-align: center;
+}
+
+.gl-user-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    background: linear-gradient(135deg,#ffe5ec,#ffd1e6);
+    border: 3px solid #fff;
+    box-shadow: 0 8px 18px rgba(251,111,146,.18);
+}
+
+.gl-user-name {
+    font-weight: 800;
+    color: #d70025;
+    font-size: 18px;
+}
+
+.gl-user-email {
+    margin-top: 6px;
+    color: #666;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* ===== USER MENU (LEFT SIDEBAR) ===== */
+.gl-user-menu {
+    margin-top: 16px;
+    padding: 12px;
+    background: #fff; /* nền trắng */
+    border-radius: 16px;
+    border: 1px solid #ffe0ea;
+    display: flex;
+    flex-direction: column; /* mỗi link 1 hàng */
+    gap: 6px;
+}
+
+/* Link item */
+.gl-user-link {
+    padding: 12px 14px;
+    border-radius: 12px;
+    text-decoration: none; /* bỏ underline */
+    font-size: 15px;
+    font-weight: 600;
+    color: #555;
+    transition: all .2s ease;
+}
+
+    /* Hover */
+    .gl-user-link:hover {
+        color: #d70025;
+        font-weight: 700;
+        background: #fff5f8;
+    }
+
+    /* Active */
+    .gl-user-link.active {
+        color: #d70025;
+        font-weight: 800;
+        background: #ffe5ec;
+        padding-left: 10px;
+    }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .gl-user-menu {
+        padding: 10px;
+    }
+
+    .gl-user-link {
+        font-size: 14px;
+    }
+}
+
+.gl-user-main {
+    background: #fff;
+    border: 1px solid #ffd4de;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 10px 24px rgba(251,111,146,.10);
+    /* Giữ nguyên để chiếm hết cột 1fr */
+    width: 100%;
+}
+
+.gl-user-title {
+    margin: 0 0 16px;
+    color: #d70025;
+    font-weight: 900;
+    font-size: 28px;
+}
+
+.gl-user-box {
+    background: #fff5f8;
+    border: 1px solid #ffd4de;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
+}
+
+    .gl-user-box h3 {
+        margin: 0 0 10px;
+        color: #d70025;
+        font-weight: 900;
+    }
+
+@media (max-width: 992px) {
+    .gl-user-wrap {
+        grid-template-columns: 1fr;
+    }
+
+    .gl-user-side {
+        position: static;
+    }
+}
+
+.gl-user-logout {
+    margin-top: 24px;
+    padding: 16px;
+    text-align: center;
+}
+
+.gl-logout-btn {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 50px;
+    border: none;
+    background: #ff8fab;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
+}
+
+    .gl-logout-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(251, 111, 146, 0.3);
+        transform: translateY(-1px);
+    }
+
+/* ===== ORDERS TAB STYLE ===== */
+
+.gl-orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.gl-order-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 14px;
+    border-radius: 14px;
+    border: 1px solid #ffd4de;
+    background: #fff;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+    .gl-order-row:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(251,111,146,.14);
+    }
+
+.gl-order-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.gl-order-code {
+    font-weight: 900;
+    color: #333;
+}
+
+.gl-order-date {
+    font-size: 14px;
+    color: #777;
+    font-weight: 600;
+}
+
+/* link "Xem chi tiết" bỏ underline + giống vibe GiftLab */
+.gl-order-link {
+    text-decoration: none;
+    font-weight: 800;
+    color: #d70025;
+    background: #fff5f8;
+    border: 1px solid #ffd4de;
+    padding: 10px 14px;
+    border-radius: 14px;
+    transition: .2s ease;
+    white-space: nowrap;
+}
+
+    .gl-order-link:hover {
+        background: #ffe5ec;
+    }
+
+/* chi tiết đơn */
+.gl-order-detail p {
+    margin: 6px 0;
+}
+
+@media (max-width:768px) {
+    .gl-order-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .gl-order-link {
+        width: 100%;
+        text-align: center;
+    }
+}

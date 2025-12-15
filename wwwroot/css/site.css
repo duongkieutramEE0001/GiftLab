@@ -559,7 +559,7 @@ a {
 .gl-feature-track {
     display: flex;
     gap: 20px; /* khoảng cách icon */
-    animation: scrollLoop 18s linear infinite;
+    animation: scrollLoop 10s linear infinite;
 }
 
 .gl-feature-item img {
